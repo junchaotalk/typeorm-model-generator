@@ -21,8 +21,10 @@
   "homepage": "https://github.com/Kononnable/typeorm-model-generator#readme",
   "dependencies": {
     "@types/node": "^7.0.10",
+    "lodash": "^4.17.4",
     "mssql": "^3.3.0",
     "mustache": "^2.3.0",
+    "mysql": "^2.13.0",
     "reflect-metadata": "^0.1.10",
     "typeorm": "0.0.10",
     "yargs": "^7.0.2"

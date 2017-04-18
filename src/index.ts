@@ -1,12 +1,11 @@
 import { MssqlDriver } from './drivers/MssqlDriver';
+import { MysqlDriver } from './drivers/MysqlDriver';
 import * as Mustache from 'mustache'
 import { Engine } from './Engine'
 import * as Yargs from 'yargs'
 import { AbstractDriver } from "./drivers/abstractDriver";
 // var x = Mustache.render("{{a}}", { a: 'test' });
 // console.log(x);
-
-
 
 var argv = Yargs
     .usage('Usage: typeorm-model-generator -h <host> -d <database> -p [port] -u <user> -x [password] -e [engine]')
@@ -42,7 +41,6 @@ var argv = Yargs
     })
     .argv;
 
-
 var driver: AbstractDriver;
 var standardPort: number;
 switch (argv.e) {
@@ -50,6 +48,11 @@ switch (argv.e) {
         driver = new MssqlDriver();
         standardPort = 1433;
         break;
+    case 'mysql':
+        driver = new MysqlDriver();
+        standardPort = 3306;
+        break;
+        
     default:
         console.error('Database engine not recognized.')
         process.abort();

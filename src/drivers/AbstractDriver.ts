@@ -8,9 +8,10 @@ export abstract class AbstractDriver {
         dbModel.entities = await this.GetAllTables();
         await this.GetCoulmnsFromEntity(dbModel.entities);
         await this.GetIndexesFromEntity(dbModel.entities);
-        dbModel.relations = await this.GetRelations();
+        // dbModel.relations = await this.GetRelations();
+        // console.log(dbModel.relations);
         await this.DisconnectFromServer();
-        this.FindPrimaryColumnsFromIndexes(dbModel)
+        this.FindPrimaryColumnsFromIndexes(dbModel);
         return dbModel;
     }
     abstract async ConnectToServer(database:string,server:string,port:number,user:string,password:string);
