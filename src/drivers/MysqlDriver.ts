@@ -23,8 +23,13 @@ export class MysqlDriver extends AbstractDriver {
     }
 
     GetCamelCase(entityName: string) {
-        entityName = _.camelCase(entityName).replace(/tbl/g,'')
+        entityName = _.camelCase(entityName).replace(/tbl/g,'');
         return entityName.substring(0,1).toUpperCase() + entityName.substring(1);
+    }
+
+    GetSnakeName(entityName: string) {
+        entityName = entityName.replace(/tbl_/g,'');
+        return entityName;
     }
 
     async GetAllTables(): Promise<EntityInfo[]> {
@@ -35,6 +40,7 @@ export class MysqlDriver extends AbstractDriver {
         response.forEach((val) => {
             let ent: EntityInfo = <EntityInfo>{};
             ent.EntityNameCamel = this.GetCamelCase(val.TABLE_NAME);
+            ent.EntityNameSnake = this.GetSnakeName(val.TABLE_NAME);
             ent.EntityName = val.TABLE_NAME;
             ent.Columns = <ColumnInfo[]>[];
             ent.Indexes = <IndexInfo[]>[];

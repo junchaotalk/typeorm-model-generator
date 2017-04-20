@@ -37,7 +37,7 @@ export class Engine {
         "sourceMap": true
     }}`,{encoding:'UTF-8',flag:'w'});
         databaseModel.entities.forEach(element => {
-             let resultFilePath = path.resolve(resultPath,element.EntityNameCamel+'.ts');
+             let resultFilePath = path.resolve(resultPath,element.EntityNameSnake+'.ts');
              let rendered = Mustache.render(template, element);
              fs.writeFileSync(resultFilePath,rendered,{encoding:'UTF-8',flag:'w'})
         });
