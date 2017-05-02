@@ -17,6 +17,17 @@ export class MysqlDriver extends AbstractDriver {
             entity.Columns.forEach(col=>{
                 if(pIndex.columns.some( cIndex=> cIndex.name==col.name)) {
                     col.isPrimary = true;
+                    col.isSpecialColumn = true;
+                }
+                if (col.name == 'create_time') {
+                    col.isCreateTime = true;
+                    col.isSpecialColumn = true;
+                } else if (col.name == 'update_time') {
+                    col.isUpdateTime = true;
+                    col.isSpecialColumn = true;
+                } else if (col.name == 'version') {
+                    col.isVersion = true;
+                    col.isSpecialColumn = true;
                 }
             })
         });
@@ -64,6 +75,7 @@ export class MysqlDriver extends AbstractDriver {
                 colInfo.name = resp.COLUMN_NAME;
                 colInfo.is_nullable = resp.IS_NULLABLE == 'YES' ? true : false;
                 colInfo.default = resp.COLUMN_DEFAULT;
+                colInfo.isSpecialColumn = false; 
                 switch (resp.DATA_TYPE) {
                     case "int":
                         colInfo.ts_type = "number"

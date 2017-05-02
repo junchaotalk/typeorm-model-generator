@@ -11,6 +11,10 @@ interface ColumnInfo {
     "char" | "longtext" | "tinyint" | "varchar",
     char_max_lenght: number|null,
     isPrimary:boolean,
+    isCreateTime:boolean,
+    isUpdateTime:boolean,
+    isVersion:boolean,
+    isSpecialColumn:boolean,
     numericPrecision:number|null,
     numericScale:number|null
 }
