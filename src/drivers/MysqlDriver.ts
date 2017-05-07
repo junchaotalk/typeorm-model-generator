@@ -106,7 +106,7 @@ export class MysqlDriver extends AbstractDriver {
                         colInfo.sql_type = "date"
                         break;
                     case "datetime":
-                        colInfo.ts_type = "Date";
+                        colInfo.ts_type = "string";
                         colInfo.sql_type = "datetime"
                         break;
                     case "char":
