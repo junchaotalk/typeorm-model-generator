@@ -1,4 +1,4 @@
-import {Index,Entity, PrimaryColumn, Column, CreateDateColumn, UpdateDateColumn, VersionColumn, OneToMany, ManyToOne, JoinTable} from "typeorm";
+import {Index, Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn, VersionColumn, OneToMany, ManyToOne, JoinTable} from "typeorm";
 
 @Entity()
 {{#Indexes}}{{^isPrimary}}@Index("{{name}}",[{{#columns}}"{{name}}",{{/columns}}]{{#isUnique}},{unique:true}{{/isUnique}})
@@ -6,7 +6,7 @@ import {Index,Entity, PrimaryColumn, Column, CreateDateColumn, UpdateDateColumn,
 
     {{#Columns}}
     {{#isPrimary}}
-    @PrimaryColumn()
+    @PrimaryGeneratedColumn()
     {{/isPrimary}}
     {{#isSpecialColumn}}
     {{#isCreateTime}}
