@@ -1,6 +1,6 @@
 import {Index, Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn, VersionColumn, OneToMany, ManyToOne, JoinTable} from "typeorm";
 
-@Entity()
+@Entity("{{EntityName}}")
 {{#Indexes}}{{^isPrimary}}@Index("{{name}}",[{{#columns}}"{{name}}",{{/columns}}]{{#isUnique}},{unique:true}{{/isUnique}})
 {{/isPrimary}}{{/Indexes}}export class {{EntityNameCamel}} {
 
